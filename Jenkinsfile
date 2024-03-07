@@ -1,8 +1,7 @@
 pipeline {
     agent any // Update agent specifier based on your Jenkins configuration
     environment {
-        AWS_ACCESS_KEY_ID     = credentials('aws-access-key-id')
-        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
+        AWS_CREDENTIALS = credentials('aws-credentials-id')
         AWS_DEFAULT_REGION    = 'us-west-3' // Replace with your AWS region
     }
     stages {
