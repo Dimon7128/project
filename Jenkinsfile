@@ -23,12 +23,11 @@ pipeline {
                 sh 'terraform plan'
             }
         }
-        stage('Terraform Apply') {
+       stage('Terraform Apply') {
             steps {
-                input(message: "Apply Terraform changes?", ok: "Apply")
-                sh 'terraform apply -auto-approve'
-            }
-        }
+            sh 'terraform apply -auto-approve'
+    }
+}
     }
     post {
         always {
