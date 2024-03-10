@@ -29,11 +29,11 @@ pipeline {
     }
 }
     }
-    //post {
-      //  always {
+    post {
+        always {
             // Add any cleanup or  notification steps here, like terraform destroy or workspace cleanup
-        //    echo 'Cleaning up...'
-          //  sh 'terraform destroy -auto-approve'
-        //}
-    //}
+            echo 'Cleaning up...'
+            sh 'terraform destroy -auto-approve'
+        }
+    }
 }
