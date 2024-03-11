@@ -3,7 +3,7 @@ pipeline {
         label 'Agent_WeatherApp1'
     }
     environment {
-        AWS_DEFAULT_REGION = 'us-west-3' // Replace with your AWS region
+        AWS_DEFAULT_REGION = 'us-west-3' // Repla ce with your AWS region
     }
     stages {
         stage('Checkout Code') {
