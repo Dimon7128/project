@@ -1,5 +1,5 @@
 pipeline {
-    agent any // Update agent specifier based on your Jenkins configuration
+    agent "Agent_WeatherApp1" // Update agent specifier based on your Jenkins configuration
     environment {
         AWS_CREDENTIALS = credentials('aws-credentials-id')
         AWS_DEFAULT_REGION    = 'us-west-3' // Replace with your AWS region
@@ -29,6 +29,7 @@ pipeline {
     }
 }
     }
+    
     post {
         always {
             // Add any cleanup or  notification steps here, like terraform destroy or workspace cleanup
