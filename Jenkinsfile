@@ -1,5 +1,8 @@
 pipeline {
-    label "Agent_WeatherApp1" // Update agent specifier based on your Jenkins configuration
+	agent {
+		label 'Agent_WeatherApp1'
+	}
+ // Update agent specifier based on your Jenkins configuration
     environment {
         AWS_CREDENTIALS = credentials('aws-credentials-id')
         AWS_DEFAULT_REGION    = 'us-west-3' // Replace with your AWS region
