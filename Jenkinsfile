@@ -28,23 +28,29 @@ pipeline {
         stage('Terraform Init and Plan') {
             steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-credentials-id', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                    // Debug: Print out AWS credentials being used
-                    echo "Using AWS credentials ID: aws-credentials-id"
-                    
-                    // Debug: Ensure AWS credentials are masked
-                    echo "AWS Access Key: ${env.AWS_ACCESS_KEY_ID}"
-                    echo "AWS Secret Key: ${env.AWS_SECRET_ACCESS_KEY}"
+                // Debug: Print out AWS credentials being used
+                echo "Using AWS credentials ID: aws-credentials-id"
+            
+                // Debug: Print the Terraform version and check for errors
+                script {
+                    def tfVersionOutput = sh(script: 'terraform version', returnStdout: true).trim()
+                    echo "Terraform version: ${tfVersionOutput}"
+                }
 
-                    // Debug: Print the Terraform version
-                    sh 'terraform version'
-
-                    // Run Terraform init and plan with detailed output for debugging
-                   sh 'terraform init || echo "Terraform init failed."'
-                    sh 'terraform plan || echo "Terraform plan failed."'
-
+                // Run Terraform init and plan and check for errors
+                script {
+                    try {
+                        sh 'terraform init'
+                        sh 'terraform plan'
+                    } catch (Exception e) {
+                        echo "Error during Terraform init or plan: ${e.getMessage()}"
+                        error "Stopping the build due to errors in Terraform init or plan."
                 }
             }
         }
+    }
+}
+
         
         stage('Terraform Apply') {
             steps {
