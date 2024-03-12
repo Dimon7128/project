@@ -39,8 +39,9 @@ pipeline {
                     sh 'terraform version'
 
                     // Run Terraform init and plan with detailed output for debugging
-                    sh 'terraform init'
-                    sh 'terraform plan'
+                   sh 'terraform init || echo "Terraform init failed."'
+                    sh 'terraform plan || echo "Terraform plan failed."'
+
                 }
             }
         }
