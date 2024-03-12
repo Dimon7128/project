@@ -4,8 +4,9 @@ pipeline {
     }
     
     environment {
-        AWS_CREDENTIALS = credentials('aws-credentials-id')
-        AWS_DEFAULT_REGION = 'eu-west-3' // Replace with your AWS region
+        AWS_ACCESS_KEY_ID     = credentials('aws-access-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
+        AWS_DEFAULT_REGION    = 'eu-west-3' // Replace with your AWS region
     }
     
     stages {
@@ -24,18 +25,14 @@ pipeline {
         
         stage('Terraform Init and Plan') {
             steps {
-                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-credentials-id', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                    sh 'terraform init'
-                    sh 'terraform plan'
-                }
+                sh 'terraform init'
+                sh 'terraform plan'
             }
         }
         
         stage('Terraform Apply') {
             steps {
-                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-credentials-id', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                    sh 'terraform apply -auto-approve'
-                }
+                sh 'terraform apply -auto-approve'
             }
         }
     }
