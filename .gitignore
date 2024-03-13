@@ -8,7 +8,7 @@
 !.myfuncs
 !*/
 !Dockerfile
-
+!*.tf
 #File Types:
 !*.c
 !*.md
