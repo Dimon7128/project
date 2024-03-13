@@ -1,0 +1,20 @@
+                                 
+#ignore ALL files
+*
+/.idea
+
+#Exclude these
+!.gitignore
+!.myfuncs
+!*/
+!Dockerfile
+
+#File Types:
+!*.c
+!*.md
+!*.sh
+!*.py
+!Makefile
+!*.h
+!*.html
+!*.css
