@@ -1,4 +1,3 @@
-<<<<<<< HEAD
                                  
 #ignore ALL files
 *
@@ -21,10 +20,3 @@
 !*.css
 !*Jenkinsfile
 
-=======
-.terraform/
-*.tfstate
-*.tfstate.backup
-*.tfvars
-.terraform.lock.hcl
->>>>>>> 79a963324ed43835b91142d4402d140cf2c1d69f
