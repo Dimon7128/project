@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'Agent_WeatherApp1'
+        label 'Agent_Weather'
     }
     
     environment {
