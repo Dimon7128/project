@@ -18,3 +18,5 @@
 !*.h
 !*.html
 !*.css
+!*Jenkinsfile
+
