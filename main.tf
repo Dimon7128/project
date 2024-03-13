@@ -8,6 +8,10 @@ terraform {
   }
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 79a963324ed43835b91142d4402d140cf2c1d69f
 provider "aws" {
   region = var.aws_region
 }
