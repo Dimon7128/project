@@ -1,9 +1,13 @@
 pipeline {
-    agent any // Upd  ate agent specifier based on your Jenkins configuration
+    agent {
+        label 'Agent_WeatherApp1'
+    }
+    
     environment {
         AWS_CREDENTIALS = credentials('aws-credentials-id')
-        AWS_DEFAULT_REGION    = 'us-west-3' // Replace with your AWS region
+        AWS_DEFAULT_REGION = 'eu-west-3' // Replace with your AWS region
     }
+    
     stages {
         stage('Checkout Code') {
             steps {
@@ -17,24 +21,29 @@ pipeline {
                 ])
             }
         }
+        
         stage('Terraform Init and Plan') {
             steps {
-                sh 'terraform init'
-                sh 'terraform plan'
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-credentials-id', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                    sh 'terraform init'
+                    sh 'terraform plan'
+                }
             }
         }
+        
         stage('Terraform Apply') {
             steps {
-                input(message: "Apply Terraform changes?", ok: "Apply")
-                sh 'terraform apply -auto-approve'
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-credentials-id', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                    sh 'terraform apply -auto-approve'
+                }
             }
         }
     }
-//    post {
-  //      always {
-    //        // Add any cleanup or notification steps here, like terraform destroy or workspace cleanup
-      //      echo 'Cleaning up...'
-        //    sh 'terraform destroy -auto-approve'
-       // }
-  //}
-}
+    
+  //  post {
+   //     always {
+    //        echo 'Cleaning up...'
+      //      sh 'terraform    destroy -auto-approve'
+        //}
+    //}
+//}
