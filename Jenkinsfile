@@ -5,7 +5,7 @@ pipeline {
     
     environment {
         AWS_CREDENTIALS = credentials('aws-credentials-id')
-        AWS_DEFAULT_REGION = 'eu-west-3' // Replace with your AWS region
+        AWS_DEFAULT_REGION = 'eu-west-3' // Replace  with your AWS region
     }
     
     stages {
