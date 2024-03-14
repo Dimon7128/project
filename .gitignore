@@ -1,15 +1,13 @@
-                                 
+                                
 #ignore ALL files
 *
 /.idea
-
 #Exclude these
 !.gitignore
 !.myfuncs
 !*/
 !Dockerfile
 !*.tf
-#File Types:
 !*.c
 !*.md
 !*.sh
