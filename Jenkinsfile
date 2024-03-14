@@ -40,10 +40,10 @@ pipeline {
         }
     }
     
-    post {
-        always {
-            echo 'Cleaning up...'
-            sh 'terraform    destroy -auto-approve'
-        }
-    }
+  //  post {
+   //     always {
+      //      echo 'Cleaning up...'
+       //     sh 'terraform    destroy -auto-approve'
+      //  }
+  ///  }
 }
