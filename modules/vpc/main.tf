@@ -126,6 +126,7 @@ resource "aws_subnet" "public_B" {
 }
 
 
+
   
 
 

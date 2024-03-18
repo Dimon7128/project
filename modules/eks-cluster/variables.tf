@@ -47,5 +47,5 @@ variable "instance_types" {
   type        = list(string)
 }
 
-// Include other variables as needed
+
 
